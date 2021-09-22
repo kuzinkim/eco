@@ -284,6 +284,38 @@ document.addEventListener("DOMContentLoaded", (function (e) {
 
     tabService();
 
+    var leasingSections = [...document.querySelectorAll('.leasing')]
+
+    function leasingSetAttr() {
+
+        if(window.matchMedia("(max-width:767px)").matches){
+
+            for(var j = 0; j < leasingSections.length; j++){
+                var leasingSection = leasingSections[j]
+                
+                if(leasingSection.classList.contains('leasing--mobile')){
+                    leasingSection.setAttribute('id', 'leasing')
+                }else{
+                    leasingSection.setAttribute('id', '')
+                }
+            }
+        }else{
+            for(var j = 0; j < leasingSections.length; j++){
+                var leasingSection = leasingSections[j]
+                
+                if(leasingSection.classList.contains('leasing--mobile')){
+                    leasingSection.setAttribute('id', '')
+                }else{
+                    leasingSection.setAttribute('id', 'leasing')
+                }
+            }
+        }
+    }
+
+    window.addEventListener('resize', function(){
+        leasingSetAttr();
+    })
+
     // маска телефона с select
     const initialCountriesSettings = {
         bl: {
